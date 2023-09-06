@@ -4,6 +4,7 @@ import { SlLocationPin } from "react-icons/sl";
 import cartIcon from "@/images/cartIcon.png";
 import { BiCaretDown } from "react-icons/bi";
 import { HiOutlineSearch } from "react-icons/hi";
+import Link from "next/link";
 
 const Header = () => {
   
@@ -12,15 +13,17 @@ const Header = () => {
     <div className="w-full h-20 bg-amazon_blue text-lightText sticky top-0 z-50">
       <div className="h-full w-full mx-auto inline-flex items-center justify-between gap-1 mdl:gap-3 px-4"> 
       {/* {logo} */}
-      <div className=" px-2 border  border-transparent hover:border-white  cursor-pointer duration-300 flex item-center  justify-center   ">  
-        <Image className="w-28 object-cover mt-2" src={logo} alt="logoImg" />
-      </div>
+      <Link 
+        href={"/"}
+        className=" px-2 border  border-transparent hover:border-white  cursor-pointer duration-300 flex item-center  justify-center   ">  
+      <Image className="w-28 object-cover mt-2" src={logo} alt="logoImg" />
+      </Link>
               {/* {delivery} */}
       <div className=" px-2 border  border-transparent hover:border-white  cursor-pointer duration-300 item-center  justify-center hidden xl:inline-flex gap-1">
         <SlLocationPin />
         <div>
             <p>deliver to</p>
-            <p className="text-whiite font-bold uppercase">USa</p>
+            <p className="text-whiite font-bold uppercase">USA</p>
         </div>
         
       </div>
@@ -51,8 +54,9 @@ const Header = () => {
           <p className="text-white font-bold">& Favorite</p>
       </div>
               {/* {cart} */}
-      <div
-           className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative"
+        <Link
+          href={"/Cart"}
+          className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative"
         >
           <Image
             className="w-auto object-cover h-8"
@@ -61,11 +65,11 @@ const Header = () => {
           />
           <p className="text-xs text-white font-bold mt-3">Cart</p>
           <span className="absolute text-amazon_yellow text-sm top-2 left-[29px] font-semibold">
-            0
+            {  0}
           </span>
-        </div>
-      </div>
+        </Link>
     </div>
+  </div>
   );
 };
 
