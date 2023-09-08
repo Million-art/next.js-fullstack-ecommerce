@@ -6,12 +6,13 @@ import { HiShoppingCart } from "react-icons/hi";
 import { FaHeart } from "react-icons/fa";
 import Link from "next/link";
 import FormattedPrice from "../component/FormatedPrice";
-
+import {useDispatch} from 'react-redux'
+import { addToCart, addToFavorite } from "@/store/nextSlice";
 interface Props {
   productData: ProductProps[];
 }
-
 const Products: React.FC<Props> = ({ productData }) => {
+  const dispatch= useDispatch()
   return (
     <div className="w-full px-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
       {productData.map(
@@ -63,7 +64,22 @@ const Products: React.FC<Props> = ({ productData }) => {
                   <HiShoppingCart />
                 </span>
                 <span
-                  
+                  onClick={()=>{
+                    dispatch(
+                      addToFavorite({
+                        _id: _id,
+                        brand: brand,
+                        category: category,
+                        description: description,
+                        image: image,
+                        isNew: isNew,
+                        oldPrice: oldPrice,
+                        price: price,
+                        title: title,
+                        quantity: 1,
+                      })
+                    )
+                  }}
                   className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
                 >
                   <FaHeart />
@@ -91,7 +107,21 @@ const Products: React.FC<Props> = ({ productData }) => {
                 {description.substring(0, 120)}
               </p>
               <button
-                
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      _id: _id,
+                      brand: brand,
+                      category: category,
+                      description: description,
+                      image: image,
+                      isNew: isNew,
+                      oldPrice: oldPrice,
+                      price: price,
+                      title: title,
+                      quantity: 1,
+                    })
+                  )}
                 className="h-10 font-medium bg-amazon_blue text-white rounded-md hover:bg-amazon_yellow hover:text-black duration-300 mt-2"
               >
                 add to cart

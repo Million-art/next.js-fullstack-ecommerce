@@ -10,8 +10,7 @@ interface Props {
 }
 
 export default function Home({ productData }: Props) {
-  console.log(productData);
-  return (
+   return (
     <main>
       <div className="mx-w-screen-xl max-auto">
         <Banner />
