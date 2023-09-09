@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { SiMediamarkt } from "react-icons/si";
 import FormatedPrice from './FormatedPrice';
 import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../../../type";
@@ -21,9 +20,7 @@ const CartPayment = () => {
   return (
     <div className="flex flex-col gap-4 ">
       <div className="flex flex-col md:flex-col gap-2">
-        <span className="bg-green-600 rounded-full p-1 h-6 w-6 text-sm text-white flex items-center justify-center mt-1">
-          <SiMediamarkt />
-        </span>
+         
         <p className="text-sm">
           Your order qualifies for FREE Shipping by choosing this option at
           checkout. See details....
