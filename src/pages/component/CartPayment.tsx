@@ -3,37 +3,33 @@ import { SiMediamarkt } from "react-icons/si";
 import FormatedPrice from './FormatedPrice';
 import { useDispatch, useSelector } from "react-redux";
 import { StateProps, StoreProduct } from "../../../type";
+
 const CartPayment = () => {
-    const { productData, userInfo } = useSelector(
-        (state: StateProps) => state.next
-      );
-    
-    const [totalAmount, setTotalAmount] = useState(0)
+  const { productData, userInfo } = useSelector(
+    (state: StateProps) => state.next
+  );
+  const [totalAmount, setTotalAmount] = useState(0);
 
-    useEffect(() => {
-        let amt = 0;
-        productData.map((item: StoreProduct) => {
-          amt += item.price * item.quantity;
-          return;
-        });
-        setTotalAmount(amt);
-      }, [productData]);
-
-
+  useEffect(() => {
+    let amt = 0;
+    productData.forEach((item: StoreProduct) => {
+      amt += item.price * item.quantity;
+    });
+    setTotalAmount(amt);
+  }, [productData]);
 
   return (
-    <div className='flex flex-col gap-4'>
-        <div className='flex gap-2'>
-            <span className='bg-green-600 rounded-full p-1 h-6 w-6 text-sm text-white flex items-center justify-center mt-1'>
-                <SiMediamarkt />
-                
-            </span>
-            <p className="text-sm">
-                Your order qualifies for FREE Shipping by Choosing this option at
-                checkout. See details....
-            </p>
-        </div>
-        <p className="flex items-center justify-between px-2 font-semibold">
+    <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col md:flex-col gap-2">
+        <span className="bg-green-600 rounded-full p-1 h-6 w-6 text-sm text-white flex items-center justify-center mt-1">
+          <SiMediamarkt />
+        </span>
+        <p className="text-sm">
+          Your order qualifies for FREE Shipping by choosing this option at
+          checkout. See details....
+        </p>
+      </div>
+      <p className="flex items-center justify-between px-2 font-semibold">
         Total:{" "}
         <span className="font-bold text-xl">
           <FormatedPrice amount={totalAmount} />
@@ -41,10 +37,7 @@ const CartPayment = () => {
       </p>
       {userInfo ? (
         <div className="flex flex-col items-center">
-          <button
-            // onClick={handleCheckout}
-            className="w-full h-10 text-sm font-semibold bg-amazon_blue text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300"
-          >
+          <button className="w-full h-10 text-sm font-semibold bg-amazon_blue text-white rounded-lg hover:bg-amazon_yellow hover:text-black duration-300">
             Proceed to Buy
           </button>
         </div>
@@ -57,9 +50,9 @@ const CartPayment = () => {
             Please login to continue
           </p>
         </div>
-      )} 
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default CartPayment
+export default CartPayment;

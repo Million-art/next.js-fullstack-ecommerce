@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import Header from "./header/Header";
-import BottomHeader from "./header/BottomHeader";
 import Footer from "@/pages/component/footer/Footer";
 
 interface Props {
@@ -11,8 +10,7 @@ const RootLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      <BottomHeader />
-      {children}
+       {children}
       <Footer />
     </>
   );

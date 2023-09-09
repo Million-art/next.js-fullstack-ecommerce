@@ -1,9 +1,9 @@
 import Image from "next/image";
-import logo from "@/images/logo.png";
+ import { removeUser } from "@/store/nextSlice";
+ import logo from "@/images/logo.png";
 import { SlLocationPin } from "react-icons/sl";
 import cartIcon from "@/images/cartIcon.png";
 import { MdFavorite } from 'react-icons/md';
-import { BiCaretDown } from "react-icons/bi";
 import { HiOutlineSearch } from "react-icons/hi";
 import { addUser } from "@/store/nextSlice";
 import Link from "next/link";
@@ -28,6 +28,10 @@ const Header = () => {
     
   }, [dispatch, session])
   
+   const handleSignOut = () => {
+    signOut();
+    dispatch(removeUser());
+  };
 
  
   return (
@@ -78,11 +82,24 @@ const Header = () => {
             <p className="text-white font-bold flex items-center">
               Account & Lists{" "}
               <span>
-                <BiCaretDown />
-              </span>
+              
+               </span>
             </p>
+     
           </div>
         )}
+        <span className="w-15 h-10 bg-amazon_light text-sm text-white px-4 flex items-center">
+                    
+                    {userInfo && (
+                  <button
+                    onClick={handleSignOut}
+                    className="hidden md:inline-flex items-center h-8 px-2 border border-transparent hover:border-red-600 hover:text-red-400 text-amazon_yellow cursor-pointer duration-300"
+                  >
+                    Sign Out
+                  </button>
+                )}
+
+              </span>
               {/* {favorite} */}
       <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
   
